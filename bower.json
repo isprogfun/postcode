@@ -1,0 +1,18 @@
+{
+  "name": "postcode",
+  "version": "0.0.1",
+  "authors": [
+    "Ivan Shcherbakov <isprogfun@gmail.com>"
+  ],
+  "description": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "~0.13.1"
+  }
+}

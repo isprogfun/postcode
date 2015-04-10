@@ -1,0 +1,68 @@
+* {
+    font: 18px Roboto, sans-serif;
+    box-sizing: border-box;
+}
+
+/* Finder */
+.finder__text {
+    width: 400px;
+}
+/* !Finder */
+
+/* Tabs */
+.tabs {
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    border-bottom: solid 1px #ccc;
+    width: 400px;
+}
+
+.tabs__list {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+.tabs__item {
+    display: inline-block;
+    margin-right: 5px;
+    padding: 5px 10px;
+    list-style: none;
+    cursor: pointer;
+    vertical-align: bottom;
+}
+/* !Tabs */
+
+.tabs__item_active,
+.tabs__item:hover {
+    background: #66bbbb;
+}
+
+/* PostcodeList */
+.postcodeList__list {
+    padding: 0;
+    margin: 0;
+}
+
+.postcodeList__item {
+    margin-bottom: 5px;
+}
+
+.postcodeList__save {
+    display: inline-block;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.postcodeList__save:hover {
+    background: #99dddd;
+}
+
+.postcodeList__save_saved {
+    background: #66bbbb;
+}
+
+.postcodeList__save_saved:hover {
+    background: #33aaaa;
+}
+/* !PostcodeList */

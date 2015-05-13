@@ -1,3 +1,7 @@
+var Tabs = require('./tabs.jsx'),
+    Search = require('./search.jsx'),
+    Saved = require('./saved.jsx');
+
 var Main = React.createClass({
     getInitialState: function() {
         return { currentId: 'search' };

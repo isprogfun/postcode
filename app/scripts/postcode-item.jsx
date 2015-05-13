@@ -1,4 +1,4 @@
-var PostcodeItem = React.createClass({
+module.exports = React.createClass({
     getInitialState: function() {
         return { saved: this.props.item.saved };
     },

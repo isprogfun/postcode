@@ -1,4 +1,6 @@
-var PostcodeList = React.createClass({
+var PostcodeItem = require('./postcode-item.jsx');
+
+module.exports = React.createClass({
     render: function() {
         // Выводим только те результаты, где есть индекс
         var postcodeItems = this.props.data.filter(function(item) {

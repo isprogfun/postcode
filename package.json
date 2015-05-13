@@ -12,5 +12,10 @@
   "dependencies": {
     "body-parser": "^1.12.2",
     "express": "^4.12.3"
+  },
+  "devDependencies": {
+    "jsx-loader": "^0.13.2",
+    "node-libs-browser": "^0.5.0",
+    "webpack": "^1.9.5"
   }
 }

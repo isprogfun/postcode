@@ -1,4 +1,4 @@
-var Utils = React.createClass({
+module.exports = React.createClass({
     statics: {
         // Returns a function, that, as long as it continues to be invoked, will not
         // be triggered. The function will be called after it stops being called for
@@ -21,6 +21,6 @@ var Utils = React.createClass({
         }
     },
     render: function() {
-        
+
     }
 });

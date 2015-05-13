@@ -1,4 +1,6 @@
-var Saved = React.createClass({
+var PostcodeList = require('./postcode-list.jsx');
+
+module.exports = React.createClass({
     getInitialState: function() {
         var saved = window.localStorage.getItem('saved');
 
@@ -8,7 +10,7 @@ var Saved = React.createClass({
 
             return item;
         });
-        
+
         return { data: saved };
     },
     render: function() {

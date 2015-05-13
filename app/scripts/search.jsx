@@ -1,4 +1,7 @@
-var Search = React.createClass({
+var Finder = require('./finder.jsx'),
+    PostcodeList = require('./postcode-list.jsx');
+
+module.exports = React.createClass({
     getInitialState: function() {
         return { data: [] };
     },

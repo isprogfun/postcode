@@ -1,4 +1,6 @@
-var Finder = React.createClass({
+var Utils = require('./utils.jsx');
+
+module.exports = React.createClass({
     componentWillMount: function() {
         this.getData = Utils.debounce(this.getData, 200, true);
     },

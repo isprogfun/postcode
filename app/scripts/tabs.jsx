@@ -1,4 +1,4 @@
-var Tabs = React.createClass({
+module.exports = React.createClass({
     handleClick: function(e) {
         this.props.onChangeTab(e.target.dataset.id);
     },

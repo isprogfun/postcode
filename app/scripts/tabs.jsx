@@ -1,23 +1,28 @@
-module.exports = React.createClass({
-    handleClick: function(e) {
+import React from 'react';
+
+export default class Tabs extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    handleClick(e) {
         this.props.onChangeTab(e.target.dataset.id);
-    },
-    render: function() {
+    }
+    render() {
         return (
             <nav className='tabs'>
                 <ul className='tabs__list'>
-                    { this.props.tabs.map(this.renderTab) }
+                    { this.props.tabs.map(tab => this.renderTab(tab)) }
                 </ul>
             </nav>
         )
-    },
-    renderTab: function(tab) {
+    }
+    renderTab(tab) {
         var className = 'tabs__item';
 
         if (tab.id === this.props.currentId) {
             className += ' tabs__item_active';
         }
 
-        return <li onClick={ this.handleClick} className={ className } key={ tab.id } data-id={ tab.id }>{ tab.name }</li>;
+        return <li onClick={ this.handleClick.bind(this) } className={ className } key={ tab.id } data-id={ tab.id }>{ tab.name }</li>;
     }
-});
+};

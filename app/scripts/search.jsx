@@ -1,18 +1,20 @@
-var Finder = require('./finder.jsx'),
-    PostcodeList = require('./postcode-list.jsx');
+import React from 'react';
+import Finder from './finder.jsx';
+import PostcodeList from './postcode-list.jsx';
 
-module.exports = React.createClass({
-    getInitialState: function() {
-        return { data: [] };
-    },
-    handleNewData: function(data) {
+export default class Search extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { data: [] };
+    }
+    handleNewData(data) {
         var saved = window.localStorage.getItem('saved');
 
         saved = saved ? JSON.parse(saved) : [];
 
         // Проверить пришедший список на наличие в избранном
-        data = data.data.map(function(item) {
-            saved.some(function(savedItem) {
+        data = data.data.map(item => {
+            saved.some(savedItem => {
                 if (savedItem.id === item.id) {
                     item.saved = true;
 
@@ -24,14 +26,14 @@ module.exports = React.createClass({
         })
 
         this.setState({ data: data });
-    },
-    render: function() {
+    }
+    render() {
         return (
             <div className='search'>
                 <h2>Поиск</h2>
-                <Finder onGetData={ this.handleNewData } />
+                <Finder onGetData={ this.handleNewData.bind(this) } />
                 <PostcodeList data={ this.state.data } />
             </div>
         );
     }
-});
+};

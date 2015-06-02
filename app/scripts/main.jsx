@@ -1,15 +1,17 @@
-var Tabs = require('./tabs.jsx'),
-    Search = require('./search.jsx'),
-    Saved = require('./saved.jsx');
+import React from 'react';
+import Tabs from './tabs.jsx';
+import Search from './search.jsx';
+import Saved from './saved.jsx';
 
-var Main = React.createClass({
-    getInitialState: function() {
-        return { currentId: 'search' };
-    },
-    changeTab: function(id) {
+class Main extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { currentId: props.currentId };
+    }
+    changeTab(id) {
         this.setState({ currentId: id });
-    },
-    render: function() {
+    }
+    render() {
         var currentTab,
             tabs = [
                 { name: '?', id: 'search' },
@@ -24,11 +26,13 @@ var Main = React.createClass({
 
         return (
             <main className='main'>
-                <Tabs tabs={ tabs } onChangeTab={ this.changeTab } currentId={ this.state.currentId } />
+                <Tabs tabs={ tabs } onChangeTab={ this.changeTab.bind(this) } currentId={ this.state.currentId } />
                 { currentTab }
             </main>
         );
     }
-});
+};
+
+Main.defaultProps = { currentId: 'search' };
 
 React.render(<Main />, document.getElementById('container'));

@@ -1,10 +1,11 @@
-var Utils = require('./utils.jsx');
+import React from 'react';
+import utils from './utils.js';
 
-module.exports = React.createClass({
-    componentWillMount: function() {
-        this.getData = Utils.debounce(this.getData, 200, true);
-    },
-    getData: function(text) {
+export default class Finder extends React.Component {
+    componentWillMount() {
+        this.getData = utils.debounce(this.getData, 200, true);
+    }
+    getData(text) {
         var url = '//kladr-api.ru/api.php';
 
         $.ajax({
@@ -25,8 +26,8 @@ module.exports = React.createClass({
                 console.error(url, status, error.toString());
             }.bind(this)
         });
-    },
-    handleChange: function() {
+    }
+    handleChange() {
         var text = React.findDOMNode(this.refs.text).value.trim();
 
         if (!text) {
@@ -34,12 +35,12 @@ module.exports = React.createClass({
         } else {
             this.getData(text);
         }
-    },
-    render: function() {
+    }
+    render() {
         return (
             <div className='finder'>
-                <input onChange={ this.handleChange } className='finder__text' type='text' placeholder='Введите адрес' ref='text' />
+                <input ref='text' onChange={ this.handleChange.bind(this) } className='finder__text' type='text' placeholder='Введите адрес' />
             </div>
         );
     }
-});
+};

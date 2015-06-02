@@ -1,21 +1,24 @@
-var PostcodeList = require('./postcode-list.jsx');
+import React from 'react';
+import PostcodeList from './postcode-list.jsx';
 
-module.exports = React.createClass({
-    getInitialState: function() {
+export default class Saved extends React.Component {
+    constructor(props) {
+        super(props);
+
         var saved = window.localStorage.getItem('saved');
 
         saved = saved ? JSON.parse(saved) : [];
-        saved = saved.map(function(item) {
+        saved = saved.map(item => {
             item.saved = true;
 
             return item;
         });
 
-        return { data: saved };
-    },
-    render: function() {
+        this.state = { data: saved };
+    }
+    render() {
         return (
             <PostcodeList data={ this.state.data } title='Избранное' />
         )
     }
-});
+};

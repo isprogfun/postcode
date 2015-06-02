@@ -1,23 +1,21 @@
-var PostcodeItem = require('./postcode-item.jsx');
+import React from 'react';
+import PostcodeItem from './postcode-item.jsx';
 
-module.exports = React.createClass({
-    render: function() {
+export default class PostcodeList extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
         // Выводим только те результаты, где есть индекс
-        var postcodeItems = this.props.data.filter(function(item) {
-            return item.zip;
-        });
+        var postcodeItems = this.props.data.filter(item => item.zip);
 
         return (
             <div className='postcodeList'>
                 <h2>{ this.props.title }</h2>
                 <ul className='postcodeList__list'>
-                    { postcodeItems.map(function(item) {
-                        return (
-                            <PostcodeItem item={ item } key={ item.id } />
-                        )
-                    }) }
+                    { postcodeItems.map(item => <PostcodeItem item={ item } key={ item.id } />) }
                 </ul>
             </div>
         )
     }
-});
+};

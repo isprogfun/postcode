@@ -8,7 +8,7 @@ export default class Search extends React.Component {
         this.state = { data: [] };
     }
     handleNewData(data) {
-        var saved = window.localStorage.getItem('saved');
+        let saved = window.localStorage.getItem('saved');
 
         saved = saved ? JSON.parse(saved) : [];
 

@@ -12,7 +12,7 @@ class Main extends React.Component {
         this.setState({ currentId: id });
     }
     render() {
-        var currentTab,
+        let currentTab,
             tabs = [
                 { name: '?', id: 'search' },
                 { name: '♡', id: 'saved' }

@@ -6,7 +6,7 @@ export default class PostcodeItem extends React.Component {
         this.state = { saved: props.item.saved };
     }
     handleSaveClick() {
-        var saved = window.localStorage.getItem('saved');
+        let saved = window.localStorage.getItem('saved');
 
         saved = saved ? JSON.parse(saved) : [];
 
@@ -21,7 +21,7 @@ export default class PostcodeItem extends React.Component {
         window.localStorage.setItem('saved', saved);
     }
     render() {
-        var className = "postcodeList__save";
+        let className = "postcodeList__save";
 
         if (this.state.saved) {
             className += " postcodeList__save_saved"

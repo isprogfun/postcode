@@ -7,7 +7,7 @@ export default class PostcodeList extends React.Component {
     }
     render() {
         // Выводим только те результаты, где есть индекс
-        var postcodeItems = this.props.data.filter(item => item.zip);
+        let postcodeItems = this.props.data.filter(item => item.zip);
 
         return (
             <div className='postcodeList'>

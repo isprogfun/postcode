@@ -17,7 +17,7 @@ export default class Tabs extends React.Component {
         )
     }
     renderTab(tab) {
-        var className = 'tabs__item';
+        let className = 'tabs__item';
 
         if (tab.id === this.props.currentId) {
             className += ' tabs__item_active';

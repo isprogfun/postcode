@@ -5,7 +5,7 @@ export default class Saved extends React.Component {
     constructor(props) {
         super(props);
 
-        var saved = window.localStorage.getItem('saved');
+        let saved = window.localStorage.getItem('saved');
 
         saved = saved ? JSON.parse(saved) : [];
         saved = saved.map(item => {

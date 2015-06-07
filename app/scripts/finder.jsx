@@ -6,7 +6,7 @@ export default class Finder extends React.Component {
         this.getData = utils.debounce(this.getData, 200, true);
     }
     getData(text) {
-        var url = '//kladr-api.ru/api.php';
+        let url = '//kladr-api.ru/api.php';
 
         $.ajax({
             url: url,

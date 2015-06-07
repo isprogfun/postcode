@@ -1,8 +1,11 @@
+var webpack = require('webpack');
+
 module.exports = {
     entry: __dirname + '/app/scripts/main.jsx',
+    devtool: 'source-map',
     output: {
         path: __dirname + '/app/',
-        filename: 'bundle.js'
+        filename: 'bundle.min.js'
     },
     module: {
         loaders: [
@@ -11,6 +14,9 @@ module.exports = {
                 exclude: /node_modules/,
                 loaders: ['babel-loader']
             }
+        ],
+        plugins: [
+            new webpack.optimize.UglifyJsPlugin({ minimize: true })
         ]
     }
 };

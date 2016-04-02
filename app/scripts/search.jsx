@@ -6,34 +6,41 @@ export default class Search extends React.Component {
     constructor(props) {
         super(props);
         this.state = { data: [] };
+        this.handleNewData = this.handleNewData.bind(this);
     }
     handleNewData(data) {
         let saved = window.localStorage.getItem('saved');
 
         saved = saved ? JSON.parse(saved) : [];
 
+        console.log(222, data.data);
+
         // Проверить пришедший список на наличие в избранном
-        data = data.data.map(item => {
-            saved.some(savedItem => {
-                if (savedItem.id === item.id) {
-                    item.saved = true;
+        // В рендер отдать новый список с параметром saved для элементов в избранном
+        const updatedData = data.data.reduce((result, item) => {
+            const newItem = item;
+            const isSaved = saved.some(savedItem => savedItem.id === item.id);
 
-                    return true;
-                }
-            })
+            if (isSaved) {
+                newItem.saved = true;
+                result.push(newItem);
+            } else {
+                result.push(item);
+            }
 
-            return item;
-        })
+            return result;
+        }, []);
 
-        this.setState({ data: data });
+        console.log(111, updatedData);
+        this.setState({ data: updatedData });
     }
     render() {
         return (
             <div className='search'>
                 <h2>Поиск</h2>
-                <Finder onGetData={ this.handleNewData.bind(this) } />
+                <Finder onGetData={ this.handleNewData } />
                 <PostcodeList data={ this.state.data } />
             </div>
         );
     }
-};
+}

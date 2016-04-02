@@ -8,17 +8,16 @@ export default class Saved extends React.Component {
         let saved = window.localStorage.getItem('saved');
 
         saved = saved ? JSON.parse(saved) : [];
-        saved = saved.map(item => {
-            item.saved = true;
 
-            return item;
-        });
+        this.state = { data: saved.reduce((result, item) => {
+            const newItem = item;
 
-        this.state = { data: saved };
+            newItem.saved = true;
+
+            return result.concat(newItem);
+        }, []) };
     }
     render() {
-        return (
-            <PostcodeList data={ this.state.data } title='Избранное' />
-        )
+        return <PostcodeList data={ this.state.data } title='Избранное' />;
     }
-};
+}

@@ -1,15 +1,21 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import utils from './utils.js';
 
 export default class Finder extends React.Component {
+    constructor() {
+        super();
+        this.handleChange = this.handleChange.bind(this);
+        this.getData = this.getData.bind(this);
+    }
     componentWillMount() {
         this.getData = utils.debounce(this.getData, 200, true);
     }
     getData(text) {
-        let url = '//kladr-api.ru/api.php';
+        const url = '//kladr-api.ru/api.php';
 
         $.ajax({
-            url: url,
+            url,
             data: {
                 query: text,
                 oneString: 1,
@@ -17,18 +23,18 @@ export default class Finder extends React.Component {
                 token: '552180d47c5239e6538b4590'
             },
             dataType: 'jsonp',
-            success: function(data) {
+            success: (data) => {
                 if (data.result && data.result.length) {
                     this.props.onGetData({ data: data.result });
                 }
-            }.bind(this),
-            error: function(xhr, status, error) {
-                console.error(url, status, error.toString());
-            }.bind(this)
+            },
+            error: (xhr, status, error) => {
+                console.log(url, status, error.toString());
+            }
         });
     }
     handleChange() {
-        var text = React.findDOMNode(this.refs.text).value.trim();
+        const text = ReactDOM.findDOMNode(this.refs.text).value.trim();
 
         if (!text) {
             this.props.onGetData({ data: [] });
@@ -39,8 +45,18 @@ export default class Finder extends React.Component {
     render() {
         return (
             <div className='finder'>
-                <input ref='text' onChange={ this.handleChange.bind(this) } className='finder__text' type='text' placeholder='Введите адрес' />
+                <input
+                    ref='text'
+                    onChange={ this.handleChange }
+                    className='finder__text'
+                    type='text'
+                    placeholder='Введите адрес'
+                />
             </div>
         );
     }
+}
+
+Finder.propTypes = {
+    onGetData: React.PropTypes.func.isRequired
 };

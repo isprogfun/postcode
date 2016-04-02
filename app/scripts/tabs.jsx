@@ -1,20 +1,12 @@
 import React from 'react';
 
 export default class Tabs extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
+        this.handleClick = this.handleClick.bind(this);
     }
     handleClick(e) {
         this.props.onChangeTab(e.target.dataset.id);
-    }
-    render() {
-        return (
-            <nav className='tabs'>
-                <ul className='tabs__list'>
-                    { this.props.tabs.map(tab => this.renderTab(tab)) }
-                </ul>
-            </nav>
-        )
     }
     renderTab(tab) {
         let className = 'tabs__item';
@@ -23,6 +15,30 @@ export default class Tabs extends React.Component {
             className += ' tabs__item_active';
         }
 
-        return <li onClick={ this.handleClick.bind(this) } className={ className } key={ tab.id } data-id={ tab.id }>{ tab.name }</li>;
+        return (
+            <li
+                onClick={ this.handleClick }
+                className={ className }
+                key={ tab.id }
+                data-id={ tab.id }
+            >
+                { tab.name }
+            </li>
+        );
     }
+    render() {
+        return (
+            <nav className='tabs'>
+                <ul className='tabs__list'>
+                    { this.props.tabs.map(tab => this.renderTab(tab)) }
+                </ul>
+            </nav>
+        );
+    }
+}
+
+Tabs.propTypes = {
+    onChangeTab: React.PropTypes.func.isRequired,
+    currentId: React.PropTypes.string.isRequired,
+    tabs: React.PropTypes.array.isRequired
 };

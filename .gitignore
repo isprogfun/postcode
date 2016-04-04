@@ -1,4 +1,3 @@
 .DS_Store
-app/bundle.min.js
-app/bundle.min.js.map
+dist/bundle.min.js.map
 node_modules

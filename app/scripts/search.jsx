@@ -13,8 +13,6 @@ export default class Search extends React.Component {
 
         saved = saved ? JSON.parse(saved) : [];
 
-        console.log(222, data.data);
-
         // Проверить пришедший список на наличие в избранном
         // В рендер отдать новый список с параметром saved для элементов в избранном
         const updatedData = data.data.reduce((result, item) => {
@@ -31,7 +29,6 @@ export default class Search extends React.Component {
             return result;
         }, []);
 
-        console.log(111, updatedData);
         this.setState({ data: updatedData });
     }
     render() {

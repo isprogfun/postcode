@@ -3,28 +3,25 @@ import React from 'react';
 export default class PostcodeItem extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { saved: props.item.saved };
         this.handleSaveClick = this.handleSaveClick.bind(this);
     }
     handleSaveClick() {
-        let saved = window.localStorage.getItem('saved');
-
-        saved = saved ? JSON.parse(saved) : [];
-
-        if (this.state.saved) {
-            saved = saved.filter(item => item.id !== this.props.item.id);
+        if (this.props.item.saved) {
+            this.props.store.dispatch({
+                type: 'DELETE_ITEM',
+                item: this.props.item
+            });
         } else {
-            saved.push(this.props.item);
+            this.props.store.dispatch({
+                type: 'SAVE_ITEM',
+                item: this.props.item
+            });
         }
-
-        this.setState({ saved: !this.state.saved });
-        saved = JSON.stringify(saved);
-        window.localStorage.setItem('saved', saved);
     }
     render() {
         let className = 'postcodeList__save';
 
-        if (this.state.saved) {
+        if (this.props.item.saved) {
             className += ' postcodeList__save_saved';
         }
 
@@ -38,5 +35,6 @@ export default class PostcodeItem extends React.Component {
 }
 
 PostcodeItem.propTypes = {
-    item: React.PropTypes.object.isRequired
+    item: React.PropTypes.object.isRequired,
+    store: React.PropTypes.object.isRequired
 };

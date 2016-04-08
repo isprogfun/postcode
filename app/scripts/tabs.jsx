@@ -3,25 +3,23 @@ import React from 'react';
 export default class Tabs extends React.Component {
     constructor() {
         super();
-        this.handleClick = this.handleClick.bind(this);
+        this.onClick = this.onClick.bind(this);
     }
-    handleClick(e) {
-        this.props.onChangeTab(e.target.dataset.id);
+    onClick(e) {
+        this.props.store.dispatch({
+            type: 'SET_CURRENT_TAB',
+            id: e.target.dataset.id
+        });
     }
     renderTab(tab) {
         let className = 'tabs__item';
 
-        if (tab.id === this.props.currentId) {
+        if (tab.id === this.props.store.getState().currentTabId) {
             className += ' tabs__item_active';
         }
 
         return (
-            <li
-                onClick={ this.handleClick }
-                className={ className }
-                key={ tab.id }
-                data-id={ tab.id }
-            >
+            <li onClick={ this.onClick } className={ className } key={tab.id} data-id={ tab.id }>
                 { tab.name }
             </li>
         );
@@ -38,7 +36,6 @@ export default class Tabs extends React.Component {
 }
 
 Tabs.propTypes = {
-    onChangeTab: React.PropTypes.func.isRequired,
-    currentId: React.PropTypes.string.isRequired,
-    tabs: React.PropTypes.array.isRequired
+    tabs: React.PropTypes.array.isRequired,
+    store: React.PropTypes.object.isRequired
 };

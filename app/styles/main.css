@@ -38,6 +38,17 @@
     background: #66bbbb;
 }
 
+/* Saved */
+.saved,
+.search {
+    display: none;
+}
+
+.saved_active,
+.search_active {
+    display: block;
+}
+
 /* PostcodeList */
 .postcodeList__list {
     padding: 0;

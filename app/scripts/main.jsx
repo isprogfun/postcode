@@ -1,47 +1,38 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore } from 'redux';
+import reducers from './reducers';
+
 import Tabs from './tabs.jsx';
 import Search from './search.jsx';
 import Saved from './saved.jsx';
 
+const store = createStore(reducers);
+
 class Main extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { currentId: props.currentId };
-        this.changeTab = this.changeTab.bind(this);
-    }
-    changeTab(id) {
-        this.setState({ currentId: id });
-    }
     render() {
-        let currentTab;
+        const currentTabId = store.getState().currentTabId;
         let tabs = [
             { name: '?', id: 'search' },
             { name: '♡', id: 'saved' }
         ];
 
-        if (this.state.currentId === 'search') {
-            currentTab = <Search />;
-        } else if (this.state.currentId === 'saved') {
-            currentTab = <Saved />;
-        }
-
         return (
             <main className='main'>
-                <Tabs
-                    tabs={ tabs }
-                    onChangeTab={ this.changeTab }
-                    currentId={ this.state.currentId }
-                />
-                { currentTab }
+                <Tabs tabs={ tabs } currentId={ currentTabId } store = { store } />
+                <Search store={ store } active={ currentTabId === 'search' } />
+                <Saved store={ store } active={ currentTabId === 'saved' } />
             </main>
         );
     }
 }
 
-Main.defaultProps = { currentId: 'search' };
-Main.propTypes = {
-    currentId: React.PropTypes.string.isRequired
+const render = () => {
+    ReactDOM.render(<Main />, document.getElementById('container'));
 };
 
-ReactDOM.render(<Main />, document.getElementById('container'));
+// Первый рендер
+render();
+
+// Рендер на изменение стора
+store.subscribe(render);

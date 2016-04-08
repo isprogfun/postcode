@@ -6,10 +6,7 @@ export default class Finder extends React.Component {
     constructor() {
         super();
         this.handleChange = this.handleChange.bind(this);
-        this.getData = this.getData.bind(this);
-    }
-    componentWillMount() {
-        this.getData = utils.debounce(this.getData, 200, true);
+        this.getData = utils.debounce(this.getData.bind(this), 200, true);
     }
     getData(text) {
         const url = '//kladr-api.ru/api.php';
@@ -25,7 +22,10 @@ export default class Finder extends React.Component {
             dataType: 'jsonp',
             success: (data) => {
                 if (data.result && data.result.length) {
-                    this.props.onGetData({ data: data.result });
+                    this.props.store.dispatch({
+                        type: 'SET_SEARCHED_LIST',
+                        searchedList: data.result
+                    });
                 }
             },
             error: (xhr, status, error) => {
@@ -37,7 +37,10 @@ export default class Finder extends React.Component {
         const text = ReactDOM.findDOMNode(this.refs.text).value.trim();
 
         if (!text) {
-            this.props.onGetData({ data: [] });
+            this.props.store.dispatch({
+                type: 'SET_SEARCHED_LIST',
+                searchedList: []
+            });
         } else {
             this.getData(text);
         }
@@ -45,10 +48,9 @@ export default class Finder extends React.Component {
     render() {
         return (
             <div className='finder'>
-                <input
+                <input className='finder__text'
                     ref='text'
                     onChange={ this.handleChange }
-                    className='finder__text'
                     type='text'
                     placeholder='Введите адрес'
                 />
@@ -58,5 +60,5 @@ export default class Finder extends React.Component {
 }
 
 Finder.propTypes = {
-    onGetData: React.PropTypes.func.isRequired
+    store: React.PropTypes.object.isRequired
 };

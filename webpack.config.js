@@ -7,7 +7,7 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.min.js'
     },
-    devtool: 'source-map',
+    devtool: 'eval',
     module: {
         loaders: [{
             test: /\.jsx?$/,

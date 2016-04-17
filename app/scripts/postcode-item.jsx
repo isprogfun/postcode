@@ -17,6 +17,9 @@ export default class PostcodeItem extends React.Component {
                 item: this.props.item
             });
         }
+
+        // Изменили список сохранённых элементов - обновили хранилище
+        localStorage.setItem('saved', JSON.stringify(this.props.store.getState().savedList));
     }
     render() {
         let className = 'postcodeList__save';

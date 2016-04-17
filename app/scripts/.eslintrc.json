@@ -10,5 +10,10 @@
     "root": true,
     "plugins": [
         "react"
-    ]
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true
+        }
+    }
 }

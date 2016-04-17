@@ -18,7 +18,7 @@ const Main = () => {
 
     return (
         <main className='main'>
-            <Tabs tabs={ tabs } currentId={ currentTabId } store = { store } />
+            <Tabs store={ store } tabs={ tabs } currentId={ currentTabId } />
             <Search store={ store } active={ currentTabId === 'search' } />
             <Saved store={ store } active={ currentTabId === 'saved' } />
         </main>

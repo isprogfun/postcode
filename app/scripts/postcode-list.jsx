@@ -6,10 +6,9 @@ const PostcodeList = (props) => (
         <h2>{ props.title }</h2>
         <ul className='postcodeList__list'>
             {
-                props.store.getState()[props.list]
-                    .map(item => (
-                        <PostcodeItem item={ item } key={ item.id } store={ props.store } />
-                    ))
+                props.store.getState()[props.list].map(item => (
+                    <PostcodeItem item={ item } key={ item.id } store={ props.store } />
+                ))
             }
         </ul>
     </div>

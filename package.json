@@ -16,9 +16,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "scripts": {
-    "build": "webpack",
     "start": "webpack-dev-server --inline --content-base app",
-    "dist": "cp app/index.html dist/index.html; cp app/favicon.png dist/favicon.png; cp app/styles/main.css dist/styles/main.css",
-    "gh-pages": "git subtree push --prefix dist origin gh-pages"
+    "dist": "webpack; cp app/index.html docs/index.html; cp app/favicon.png docs/favicon.png; cp app/styles/main.css docs/styles/main.css"
   }
 }
